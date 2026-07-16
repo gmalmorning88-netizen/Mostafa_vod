@@ -21,17 +21,7 @@ jobs:
           pip install buildozer cython virtualenv
 
       - name: Build with Buildozer
-        run: |
-          yes | buildozer android debug 2>&1 | tee buildozer.log || true
-          echo "=========================================="
-          echo "=== LAST 100 LINES OF BUILDOZER LOG ==="
-          echo "=========================================="
-          tail -n 100 buildozer.log 2>/dev/null || echo "Log file not found"
-          echo "=========================================="
-          echo "=== SEARCHING FOR ERRORS ==="
-          echo "=========================================="
-          grep -i "error\|failed\|exception\|fatal" buildozer.log 2>/dev/null | tail -n 20 || echo "Could not search log"
-          exit 1
+        run: yes | buildozer android debug
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
