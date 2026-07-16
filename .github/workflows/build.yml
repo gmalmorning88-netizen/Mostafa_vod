@@ -16,7 +16,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libsqlite3-dev lld libffi-dev libssl-dev autoconf automake libtool pkg-config zlib1g-dev libgstreamer1.0-dev gstreamer1.0-plugins-base gstreamer1.0-plugins-good
+          sudo apt-get install -y libsqlite3-dev lld libffi-dev libssl-dev zlib1g-dev libunwind-dev
           pip install --upgrade pip
           pip install buildozer cython virtualenv
 
@@ -28,4 +28,3 @@ jobs:
         with:
           name: Vodafone-App-APK
           path: bin/*.apk
-          
