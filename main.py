@@ -1,3 +1,4 @@
+
 # Create main.py
 main_py = '''#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
@@ -31,26 +32,26 @@ ADMIN_PHONE = '01019502983'
 
 # ==================== PRODUCTS ====================
 FAKKA_PRODUCTS = [
-    {"id": "Fakka_2.5_Unite", "name": "ظپظƒط© 2.5 ط¬ظ†ظٹظ‡", "price": 2.5, "units": 45, "validity": "24 ط³ط§ط¹ط©"},
-    {"id": "Fakka_5_Unite", "name": "ظپظƒط© 5 ط¬ظ†ظٹظ‡", "price": 5, "units": 225, "validity": "24 ط³ط§ط¹ط©"},
-    {"id": "Fakka_10_Unite", "name": "ظپظƒط© 10 ط¬ظ†ظٹظ‡", "price": 10, "units": 450, "validity": "7 ط£ظٹط§ظ…"},
-    {"id": "Fakka_15_Unite", "name": "ظپظƒط© 15 ط¬ظ†ظٹظ‡", "price": 15, "units": 550, "validity": "7 ط£ظٹط§ظ…"},
-    {"id": "Fakka_20_Unite", "name": "ظپظƒط© 20 ط¬ظ†ظٹظ‡", "price": 20, "units": 0, "validity": "10 ط£ظٹط§ظ…"},
-    {"id": "Fakka_26_Unite", "name": "ظپظƒط© 26 ط¬ظ†ظٹظ‡", "price": 26, "units": 0, "validity": "ط´ظ‡ط±"},
+    {"id": "Fakka_2.5_Unite", "name": "فكة 2.5 جنيه", "price": 2.5, "units": 45, "validity": "24 ساعة"},
+    {"id": "Fakka_5_Unite", "name": "فكة 5 جنيه", "price": 5, "units": 225, "validity": "24 ساعة"},
+    {"id": "Fakka_10_Unite", "name": "فكة 10 جنيه", "price": 10, "units": 450, "validity": "7 أيام"},
+    {"id": "Fakka_15_Unite", "name": "فكة 15 جنيه", "price": 15, "units": 550, "validity": "7 أيام"},
+    {"id": "Fakka_20_Unite", "name": "فكة 20 جنيه", "price": 20, "units": 0, "validity": "10 أيام"},
+    {"id": "Fakka_26_Unite", "name": "فكة 26 جنيه", "price": 26, "units": 0, "validity": "شهر"},
 ]
 
 MARED_PRODUCTS = [
-    {"id": "Mared_10_Minuts", "name": "ظ…ط§ط±ط¯ 10 ط¯ظ‚ط§ط¦ظ‚", "price": 10, "units": 10, "type": "ط¯ظ‚ط§ط¦ظ‚", "validity": "24 ط³ط§ط¹ط©"},
-    {"id": "Mared_10_Flexs", "name": "ظ…ط§ط±ط¯ 10 ظپظ„ظٹظƒط³", "price": 10, "units": 10, "type": "ظپظ„ظٹظƒط³", "validity": "24 ط³ط§ط¹ط©"},
+    {"id": "Mared_10_Minuts", "name": "مارد 10 دقائق", "price": 10, "units": 10, "type": "دقائق", "validity": "24 ساعة"},
+    {"id": "Mared_10_Flexs", "name": "مارد 10 فليكس", "price": 10, "units": 10, "type": "فليكس", "validity": "24 ساعة"},
 ]
 
 ALL_PRODUCTS = FAKKA_PRODUCTS + MARED_PRODUCTS
 
 POINTS_PACKAGES = [
-    {"points": 10, "price": 20, "label": "10 ظ†ظ‚ط§ط· - 20 ط¬ظ†ظٹظ‡"},
-    {"points": 25, "price": 50, "label": "25 ظ†ظ‚ط·ط© - 50 ط¬ظ†ظٹظ‡"},
-    {"points": 50, "price": 100, "label": "50 ظ†ظ‚ط·ط© - 100 ط¬ظ†ظٹظ‡"},
-    {"points": 100, "price": 200, "label": "100 ظ†ظ‚ط·ط© - 200 ط¬ظ†ظٹظ‡"},
+    {"points": 10, "price": 20, "label": "10 نقاط - 20 جنيه"},
+    {"points": 25, "price": 50, "label": "25 نقطة - 50 جنيه"},
+    {"points": 50, "price": 100, "label": "50 نقطة - 100 جنيه"},
+    {"points": 100, "price": 200, "label": "100 نقطة - 200 جنيه"},
 ]
 
 # ==================== APP ====================
@@ -60,7 +61,7 @@ class VodafoneApp(App):
 
     def build(self):
         Window.clearcolor = (0.03, 0, 0, 1)
-        self.title = 'Mostafa - ط´ط­ظ† ظƒط±ظˆطھ ظپظˆط¯ط§ظپظˆظ†'
+        self.title = 'Mostafa - شحن كروت فودافون'
 
         self.main_layout = BoxLayout(orientation='vertical', padding=15, spacing=10)
         self.show_login()
@@ -70,7 +71,7 @@ class VodafoneApp(App):
         self.main_layout.clear_widgets()
 
         title = Label(
-            text='[b][color=E60000]Mostafa[/color][/b]\nط´ط­ظ† ظƒط±ظˆطھ ظپظˆط¯ط§ظپظˆظ†',
+            text='[b][color=E60000]Mostafa[/color][/b]\nشحن كروت فودافون',
             markup=True,
             font_size='22sp',
             size_hint_y=None,
@@ -81,7 +82,7 @@ class VodafoneApp(App):
         self.main_layout.add_widget(Label(size_hint_y=0.3))
 
         self.phone_input = TextInput(
-            hint_text='ط±ظ‚ظ… ط§ظ„ظ‡ط§طھظپ (01XXXXXXXXX)',
+            hint_text='رقم الهاتف (01XXXXXXXXX)',
             multiline=False,
             input_filter='int',
             size_hint_y=None,
@@ -95,7 +96,7 @@ class VodafoneApp(App):
         self.main_layout.add_widget(self.phone_input)
 
         login_btn = Button(
-            text='ط¯ط®ظˆظ„',
+            text='دخول',
             size_hint_y=None,
             height=55,
             background_color=(0.9, 0, 0, 1),
@@ -111,7 +112,7 @@ class VodafoneApp(App):
     def do_login(self, instance):
         phone = self.phone_input.text
         if len(phone) != 11 or not phone.startswith('01'):
-            self.show_popup('ط®ط·ط£', 'ط±ظ‚ظ… ط§ظ„ظ‡ط§طھظپ ط؛ظٹط± طµط­ظٹط­\nظٹط¬ط¨ ط£ظ† ظٹظƒظˆظ† 11 ط±ظ‚ظ… ظˆظٹط¨ط¯ط£ ط¨ظ€ 01')
+            self.show_popup('خطأ', 'رقم الهاتف غير صحيح\nيجب أن يكون 11 رقم ويبدأ بـ 01')
             return
 
         self.user_phone = phone
@@ -150,7 +151,7 @@ class VodafoneApp(App):
         header = BoxLayout(size_hint_y=None, height=70, spacing=10)
 
         points_btn = Button(
-            text=f'â­گ {self.points} ظ†ظ‚ط·ط©',
+            text=f'⭐ {self.points} نقطة',
             size_hint_x=0.5,
             background_color=(0.97, 0.79, 0.28, 0.2),
             color=(0.97, 0.79, 0.28, 1),
@@ -161,7 +162,7 @@ class VodafoneApp(App):
         header.add_widget(points_btn)
 
         recharge_btn = Button(
-            text='ط´ط­ظ† ظ†ظ‚ط§ط·',
+            text='شحن نقاط',
             size_hint_x=0.5,
             background_color=(0.97, 0.79, 0.28, 0.3),
             color=(0.97, 0.79, 0.28, 1),
@@ -175,15 +176,15 @@ class VodafoneApp(App):
 
         cat_layout = BoxLayout(size_hint_y=None, height=50, spacing=10)
 
-        all_btn = Button(text='ط§ظ„ظƒظ„', background_color=(0.9, 0, 0, 0.3), color=(1, 1, 1, 1), font_size='12sp')
+        all_btn = Button(text='الكل', background_color=(0.9, 0, 0, 0.3), color=(1, 1, 1, 1), font_size='12sp')
         all_btn.bind(on_press=lambda x: self.show_products('all'))
         cat_layout.add_widget(all_btn)
 
-        fakka_btn = Button(text='âڑ، ظپظƒط©', background_color=(0.9, 0, 0, 0.3), color=(1, 1, 1, 1), font_size='12sp')
+        fakka_btn = Button(text='⚡ فكة', background_color=(0.9, 0, 0, 0.3), color=(1, 1, 1, 1), font_size='12sp')
         fakka_btn.bind(on_press=lambda x: self.show_products('fakka'))
         cat_layout.add_widget(fakka_btn)
 
-        mared_btn = Button(text='ًں”¥ ظ…ط§ط±ط¯', background_color=(0.9, 0, 0, 0.3), color=(1, 1, 1, 1), font_size='12sp')
+        mared_btn = Button(text='🔥 مارد', background_color=(0.9, 0, 0, 0.3), color=(1, 1, 1, 1), font_size='12sp')
         mared_btn.bind(on_press=lambda x: self.show_products('mared'))
         cat_layout.add_widget(mared_btn)
 
@@ -210,7 +211,7 @@ class VodafoneApp(App):
 
         for product in products:
             btn = Button(
-                text=f'[b]{product["name"]}[/b]\n{product["price"]} ط¬ظ†ظٹظ‡\n{product.get("units", 0)} {product.get("type", "ظˆط­ط¯ط©")}',
+                text=f'[b]{product["name"]}[/b]\n{product["price"]} جنيه\n{product.get("units", 0)} {product.get("type", "وحدة")}',
                 markup=True,
                 size_hint_y=None,
                 height=120,
@@ -228,7 +229,7 @@ class VodafoneApp(App):
         content = BoxLayout(orientation='vertical', spacing=15, padding=20)
 
         info = Label(
-            text=f'[b]{product["name"]}[/b]\nط§ظ„ط³ط¹ط±: {product["price"]} ط¬ظ†ظٹظ‡\nط³ظٹطھظ… ط®طµظ… ظ†ظ‚ط·ط© ظˆط§ط­ط¯ط©',
+            text=f'[b]{product["name"]}[/b]\nالسعر: {product["price"]} جنيه\nسيتم خصم نقطة واحدة',
             markup=True,
             font_size='14sp',
             color=(1, 1, 1, 1),
@@ -238,7 +239,7 @@ class VodafoneApp(App):
         content.add_widget(info)
 
         target_input = TextInput(
-            hint_text='ط±ظ‚ظ… ط§ظ„ظ‡ط§طھظپ ظ„ظ„ط´ط­ظ†',
+            hint_text='رقم الهاتف للشحن',
             multiline=False,
             input_filter='int',
             size_hint_y=None,
@@ -252,7 +253,7 @@ class VodafoneApp(App):
         content.add_widget(target_input)
 
         pin_input = TextInput(
-            hint_text='ط§ظ„ط±ظ‚ظ… ط§ظ„ط³ط±ظٹ ظ„ظ„ظ…ط­ظپط¸ط©',
+            hint_text='الرقم السري للمحفظة',
             multiline=False,
             password=True,
             size_hint_y=None,
@@ -267,31 +268,31 @@ class VodafoneApp(App):
 
         btn_layout = BoxLayout(size_hint_y=None, height=50, spacing=10)
 
-        cancel_btn = Button(text='ط¥ظ„ط؛ط§ط،', background_color=(0.5, 0.5, 0.5, 1), color=(1, 1, 1, 1))
-        charge_btn = Button(text='طھط£ظƒظٹط¯ ط§ظ„ط´ط­ظ†', background_color=(0.9, 0, 0, 1), color=(1, 1, 1, 1), bold=True)
+        cancel_btn = Button(text='إلغاء', background_color=(0.5, 0.5, 0.5, 1), color=(1, 1, 1, 1))
+        charge_btn = Button(text='تأكيد الشحن', background_color=(0.9, 0, 0, 1), color=(1, 1, 1, 1), bold=True)
 
         btn_layout.add_widget(cancel_btn)
         btn_layout.add_widget(charge_btn)
         content.add_widget(btn_layout)
 
-        popup = Popup(title=f'ط´ط­ظ† {product["name"]}', content=content, size_hint=(0.9, 0.7), auto_dismiss=False)
+        popup = Popup(title=f'شحن {product["name"]}', content=content, size_hint=(0.9, 0.7), auto_dismiss=False)
 
         cancel_btn.bind(on_press=popup.dismiss)
 
         def do_charge(instance):
             if self.points <= 0:
-                self.show_popup('ط®ط·ط£', 'ظ„ط§ طھظˆط¬ط¯ ظ†ظ‚ط§ط· ظƒط§ظپظٹط©\nط§ط´ط­ظ† ظ†ظ‚ط§ط· ط£ظˆظ„ط§ظ‘')
+                self.show_popup('خطأ', 'لا توجد نقاط كافية\nاشحن نقاط أولاّ')
                 return
 
             target = target_input.text
             pin = pin_input.text
 
             if len(target) != 11 or not target.startswith('01'):
-                self.show_popup('ط®ط·ط£', 'ط±ظ‚ظ… ط§ظ„ظ‡ط§طھظپ ط؛ظٹط± طµط­ظٹط­')
+                self.show_popup('خطأ', 'رقم الهاتف غير صحيح')
                 return
 
             if len(pin) < 4:
-                self.show_popup('ط®ط·ط£', 'ط§ظ„ط±ظ‚ظ… ط§ظ„ط³ط±ظٹ ظ‚طµظٹط± ط¬ط¯ط§ظ‘')
+                self.show_popup('خطأ', 'الرقم السري قصير جداّ')
                 return
 
             popup.dismiss()
@@ -302,11 +303,11 @@ class VodafoneApp(App):
 
     def charge_card(self, msisdn, pin, product):
         loading_content = BoxLayout(orientation='vertical', padding=20, spacing=10)
-        loading_content.add_widget(Label(text='ط¬ط§ط±ظٹ ط§ظ„ط´ط­ظ†...', font_size='16sp'))
+        loading_content.add_widget(Label(text='جاري الشحن...', font_size='16sp'))
         progress = ProgressBar(max=100, value=50)
         loading_content.add_widget(progress)
 
-        loading_popup = Popup(title='ط§ظ„ط±ط¬ط§ط، ط§ظ„ط§ظ†طھط¸ط§ط±', content=loading_content, size_hint=(0.8, 0.3), auto_dismiss=False)
+        loading_popup = Popup(title='الرجاء الانتظار', content=loading_content, size_hint=(0.8, 0.3), auto_dismiss=False)
         loading_popup.open()
 
         def charge_thread():
@@ -319,12 +320,12 @@ class VodafoneApp(App):
                 Clock.schedule_once(lambda dt: loading_popup.dismiss(), 0)
 
                 if result['success']:
-                    Clock.schedule_once(lambda dt: self.show_popup('ظ†ط¬ط§ط­', result['message']), 0)
+                    Clock.schedule_once(lambda dt: self.show_popup('نجاح', result['message']), 0)
                     self.save_operation(product, msisdn, 'success')
                 else:
                     self.points += 1
                     self.update_points()
-                    Clock.schedule_once(lambda dt: self.show_popup('ظپط´ظ„', result['message']), 0)
+                    Clock.schedule_once(lambda dt: self.show_popup('فشل', result['message']), 0)
                     self.save_operation(product, msisdn, 'failed')
 
                 Clock.schedule_once(lambda dt: self.show_home(), 0)
@@ -333,7 +334,7 @@ class VodafoneApp(App):
                 Clock.schedule_once(lambda dt: loading_popup.dismiss(), 0)
                 self.points += 1
                 self.update_points()
-                Clock.schedule_once(lambda dt: self.show_popup('ط®ط·ط£', str(e)), 0)
+                Clock.schedule_once(lambda dt: self.show_popup('خطأ', str(e)), 0)
 
         threading.Thread(target=charge_thread).start()
 
@@ -360,7 +361,7 @@ class VodafoneApp(App):
         )
 
         if resp1.status_code != 200:
-            return {'success': False, 'message': 'ظپط´ظ„ ط§ظ„ط§طھطµط§ظ„ ط§ظ„ط£ظˆظ„ظٹ'}
+            return {'success': False, 'message': 'فشل الاتصال الأولي'}
 
         seamless_token = resp1.json().get('seamlessToken')
 
@@ -387,7 +388,7 @@ class VodafoneApp(App):
         )
 
         if resp2.status_code != 200:
-            return {'success': False, 'message': 'ظپط´ظ„ طھط³ط¬ظٹظ„ ط§ظ„ط¯ط®ظˆظ„\nطھط£ظƒط¯ ظ…ظ† ظپطھط­ ط¯ط§طھط§ ظپظˆط¯ط§ظپظˆظ†'}
+            return {'success': False, 'message': 'فشل تسجيل الدخول\nتأكد من فتح داتا فودافون'}
 
         access_token = resp2.json().get('access_token')
 
@@ -435,12 +436,12 @@ class VodafoneApp(App):
         result = resp3.json()
 
         if resp3.status_code == 200:
-            return {'success': True, 'message': 'طھظ… ط§ظ„ط´ط­ظ† ط¨ظ†ط¬ط§ط­!'}
+            return {'success': True, 'message': 'تم الشحن بنجاح!'}
         elif result.get('code') == '6051':
-            balance = next((item['value'] for item in result.get('characteristic', []) if item['name'] == 'RemainingBalance'), 'ط؛ظٹط± ظ…ط¹ط±ظˆظپ')
-            return {'success': False, 'message': f'ظ„ط§ ظٹظˆط¬ط¯ ط±طµظٹط¯ ظƒط§ظپظٹ\nط±طµظٹط¯ظƒ: {balance} ط¬ظ†ظٹظ‡'}
+            balance = next((item['value'] for item in result.get('characteristic', []) if item['name'] == 'RemainingBalance'), 'غير معروف')
+            return {'success': False, 'message': f'لا يوجد رصيد كافي\nرصيدك: {balance} جنيه'}
         else:
-            return {'success': False, 'message': result.get('reason', 'ط®ط·ط£ ط؛ظٹط± ظ…ط¹ط±ظˆظپ')}
+            return {'success': False, 'message': result.get('reason', 'خطأ غير معروف')}
 
     def update_points(self):
         try:
@@ -483,47 +484,60 @@ class VodafoneApp(App):
 
     def show_points_dialog(self, instance=None):
         content = BoxLayout(orientation='vertical', spacing=10, padding=20)
-        content.add_widget(Label(text=f'[b][color=F7C948]â­گ {self.points} ظ†ظ‚ط·ط©[/color][/b]', markup=True, font_size='24sp'))
-        content.add_widget(Label(text='ظƒظ„ ط´ط­ظ†ط© طھط®طµظ… ظ†ظ‚ط·ط© ظˆط§ط­ط¯ط©', font_size='12sp', color=(0.7, 0.7, 0.7, 1)))
+        content.add_widget(Label(text=f'[b][color=F7C948]⭐ {self.points} نقطة[/color][/b]', markup=True, font_size='24sp'))
+        content.add_widget(Label(text='كل شحنة تخصم نقطة واحدة', font_size='12sp', color=(0.7, 0.7, 0.7, 1)))
 
-        close_btn = Button(text='ط¥ط؛ظ„ط§ظ‚', size_hint_y=None, height=50, background_color=(0.5, 0.5, 0.5, 1))
+        close_btn = Button(text='إغلاق', size_hint_y=None, height=50, background_color=(0.5, 0.5, 0.5, 1))
 
-        popup = Popup(title='ط±طµظٹط¯ ط§ظ„ظ†ظ‚ط§ط·', content=content, size_hint=(0.8, 0.4))
+        popup = Popup(title='رصيد النقاط', content=content, size_hint=(0.8, 0.4))
         close_btn.bind(on_press=popup.dismiss)
         content.add_widget(close_btn)
         popup.open()
 
     def show_recharge_dialog(self, instance=None):
         content = BoxLayout(orientation='vertical', spacing=10, padding=20)
-        content.add_widget(Label(text='ط§ط®طھط± ط§ظ„ط¨ط§ظ‚ط©:', font_size='14sp', color=(1, 1, 1, 1)))
+        content.add_widget(Label(text='اختر الباقة:', font_size='14sp', color=(1, 1, 1, 1)))
 
         for pkg in POINTS_PACKAGES:
             btn = Button(text=pkg['label'], size_hint_y=None, height=50, background_color=(0.97, 0.79, 0.28, 0.2), color=(0.97, 0.79, 0.28, 1))
             btn.bind(on_press=lambda x, p=pkg: self.send_recharge_request(p))
             content.add_widget(btn)
 
-        close_btn = Button(text='ط¥ظ„ط؛ط§ط،', size_hint_y=None, height=50, background_color=(0.5, 0.5, 0.5, 1))
+        close_btn = Button(text='إلغاء', size_hint_y=None, height=50, background_color=(0.5, 0.5, 0.5, 1))
 
-        popup = Popup(title='ط´ط­ظ† ظ†ظ‚ط§ط·', content=content, size_hint=(0.9, 0.7))
+        popup = Popup(title='شحن نقاط', content=content, size_hint=(0.9, 0.7))
         close_btn.bind(on_press=popup.dismiss)
         content.add_widget(close_btn)
         popup.open()
 
     def send_recharge_request(self, package):
         msg = (
-            f"ًں”” ط·ظ„ط¨ ط´ط­ظ† ظ†ظ‚ط§ط· ط¬ط¯ظٹط¯!\n"
-            f"ًں‘¤ ط§ظ„ط¹ظ…ظٹظ„: {self.user_phone}\n"
-            f"â­گ ط§ظ„ظ†ظ‚ط§ط·: {package['points']}\n"
-            f"ًں’° ط§ظ„ظ…ط¨ظ„ط؛: {package['price']} ط¬ظ†ظٹظ‡"
+            f"🔔 طلب شحن نقاط جديد!\n"
+            f"👤 العميل: {self.user_phone}\n"
+            f"⭐ النقاط: {package['points']}\n"
+            f"💰 المبلغ: {package['price']} جنيه"
         )
 
         import webbrowser
         webbrowser.open(f'https://wa.me/2{ADMIN_PHONE}?text={msg}')
 
-        self.show_popup('طھظ…', 'طھظ… ظپطھط­ ظˆط§طھط³ط§ط¨\nط£ط±ط³ظ„ ظ„ظ‚ط·ط© ط§ظ„ط´ط­ظ†')
+        self.show_popup('تم', 'تم فتح واتساب\nأرسل لقطة الشحن')
 
     def show_popup(self, title, message):
         content = BoxLayout(orientation='vertical', padding=20, spacing=10)
         content.add_widget(Label(text=message, font_size='14sp'))
 
-        btn
+        btn = Button(text='حسناّ', size_hint_y=None, height=50)
+        popup = Popup(title=title, content=content, size_hint=(0.8, 0.4))
+        btn.bind(on_press=popup.dismiss)
+        content.add_widget(btn)
+        popup.open()
+
+if __name__ == '__main__':
+    VodafoneApp().run()
+'''
+
+with open('/content/vodafone-app/main.py', 'w', encoding='utf-8') as f:
+    f.write(main_py)
+
+print('✅ main.py created!')
