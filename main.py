@@ -19,6 +19,7 @@ from kivy.core.window import Window
 from kivy.core.text import LabelBase
 from kivy.clock import Clock
 from kivy.properties import StringProperty, NumericProperty
+from kivy.utils import platform
 import requests
 import json
 import threading
@@ -26,6 +27,8 @@ import os
 from datetime import datetime
 
 # ==================== REGISTER ARABIC FONT ====================
+FONT_NAME = 'Roboto'
+
 FONT_PATHS = [
     'Cairo-Regular.ttf',
     'fonts/Cairo-Regular.ttf',
@@ -33,19 +36,15 @@ FONT_PATHS = [
     os.path.join(os.path.dirname(__file__), 'fonts', 'Cairo-Regular.ttf'),
 ]
 
-ARABIC_FONT = None
 for path in FONT_PATHS:
     if os.path.exists(path):
-        ARABIC_FONT = path
-        break
-
-if ARABIC_FONT:
-    LabelBase.register(name='ArabicFont', fn_regular=ARABIC_FONT)
-    FONT_NAME = 'ArabicFont'
-    print(f"[INFO] Arabic font loaded from: {ARABIC_FONT}")
-else:
-    FONT_NAME = None
-    print("[WARNING] Arabic font not found! Using default font.")
+        try:
+            LabelBase.register(name='ArabicFont', fn_regular=path)
+            FONT_NAME = 'ArabicFont'
+            print(f"[INFO] Arabic font loaded from: {path}")
+            break
+        except Exception as e:
+            print(f"[WARNING] Failed to load font from {path}: {e}")
 
 # ==================== CONFIG ====================
 SUPABASE_URL = 'https://qippgvyupkeruvzkfdkz.supabase.co'
@@ -100,17 +99,13 @@ class VodafoneApp(App):
         # ====== شعار ======
         logo_container = BoxLayout(size_hint_y=None, height=150, padding=20)
 
-        if os.path.exists('logo.png'):
-            logo = Image(source='logo.png', allow_stretch=True, keep_ratio=True)
-        else:
-            logo = Label(
-                text='[b][color=E60000]VODAFONE[/color][/b]
-[color=FFFFFF]Mostafa[/color]',
-                markup=True,
-                font_size='32sp',
-                font_name=FONT_NAME
-            )
-
+        logo_text = '[b][color=E60000]VODAFONE[/color][/b]\n[color=FFFFFF]Mostafa[/color]'
+        logo = Label(
+            text=logo_text,
+            markup=True,
+            font_size='32sp',
+            font_name=FONT_NAME
+        )
         logo_container.add_widget(logo)
         self.main_layout.add_widget(logo_container)
 
@@ -159,8 +154,7 @@ class VodafoneApp(App):
     def do_login(self, instance):
         phone = self.phone_input.text
         if len(phone) != 11 or not phone.startswith('01'):
-            self.show_popup('خطأ', 'رقم الهاتف غير صحيح
-يجب أن يكون 11 رقم ويبدأ بـ 01')
+            self.show_popup('خطأ', 'رقم الهاتف غير صحيح\nيجب أن يكون 11 رقم ويبدأ بـ 01')
             return
 
         self.user_phone = phone
@@ -306,10 +300,9 @@ class VodafoneApp(App):
         grid.bind(minimum_height=grid.setter('height'))
 
         for product in products:
+            btn_text = f'[b]{product["name"]}[/b]\n{product["price"]} جنيه\n{product.get("units", 0)} {product.get("type", "وحدة")}'
             btn = Button(
-                text=f'[b]{product["name"]}[/b]
-{product["price"]} جنيه
-{product.get("units", 0)} {product.get("type", "وحدة")}',
+                text=btn_text,
                 markup=True,
                 size_hint_y=None,
                 height=140,
@@ -327,10 +320,9 @@ class VodafoneApp(App):
     def show_charge_dialog(self, product):
         content = BoxLayout(orientation='vertical', spacing=20, padding=25)
 
+        info_text = f'[b]{product["name"]}[/b]\nالسعر: {product["price"]} جنيه\nسيتم خصم نقطة واحدة'
         info = Label(
-            text=f'[b]{product["name"]}[/b]
-السعر: {product["price"]} جنيه
-سيتم خصم نقطة واحدة',
+            text=info_text,
             markup=True,
             font_size='16sp',
             color=(1, 1, 1, 1),
@@ -408,8 +400,7 @@ class VodafoneApp(App):
 
         def do_charge(instance):
             if self.points <= 0:
-                self.show_popup('خطأ', 'لا توجد نقاط كافية
-اشحن نقاط أولاً')
+                self.show_popup('خطأ', 'لا توجد نقاط كافية\nاشحن نقاط أولاً')
                 return
 
             target = target_input.text
@@ -499,8 +490,7 @@ class VodafoneApp(App):
         )
 
         if resp1.status_code != 200:
-            return {'success': False, 'message': 'فشل الاتصال الأولي بفودافون
-تأكد من تشغيل داتا فودافون'}
+            return {'success': False, 'message': 'فشل الاتصال الأولي بفودافون\nتأكد من تشغيل داتا فودافون'}
 
         seamless_token = resp1.json().get('seamlessToken')
 
@@ -527,8 +517,7 @@ class VodafoneApp(App):
         )
 
         if resp2.status_code != 200:
-            return {'success': False, 'message': 'فشل تسجيل الدخول
-تأكد من فتح داتا فودافون'}
+            return {'success': False, 'message': 'فشل تسجيل الدخول\nتأكد من فتح داتا فودافون'}
 
         access_token = resp2.json().get('access_token')
 
@@ -579,8 +568,7 @@ class VodafoneApp(App):
             return {'success': True, 'message': 'تم الشحن بنجاح!'}
         elif result.get('code') == '6051':
             balance = next((item['value'] for item in result.get('characteristic', []) if item['name'] == 'RemainingBalance'), 'غير معروف')
-            return {'success': False, 'message': f'لا يوجد رصيد كافي
-رصيدك: {balance} جنيه'}
+            return {'success': False, 'message': f'لا يوجد رصيد كافي\nرصيدك: {balance} جنيه'}
         else:
             return {'success': False, 'message': result.get('reason', 'خطأ غير معروف')}
 
@@ -658,10 +646,9 @@ class VodafoneApp(App):
 
                 card = BoxLayout(orientation='vertical', spacing=5, padding=15, size_hint_y=None, height=120)
 
+                info_text = f'[b]{item["product"]}[/b]\n📱 {item["target_phone"]}\n💰 {item["price"]} جنيه | {status_text}'
                 info = Label(
-                    text=f'[b]{item["product"]}[/b]
-📱 {item["target_phone"]}
-💰 {item["price"]} جنيه | {status_text}',
+                    text=info_text,
                     markup=True,
                     font_size='13sp',
                     color=(1, 1, 1, 1),
@@ -717,8 +704,9 @@ class VodafoneApp(App):
         self.main_layout.add_widget(title)
 
         stats = self.get_admin_stats()
+        stats_text = f'📊 إجمالي اليوم: {stats["today_total"]} جنيه | ⭐ النقاط المباعة: {stats["points_sold"]}'
         stats_label = Label(
-            text=f'📊 إجمالي اليوم: {stats["today_total"]} جنيه | ⭐ النقاط المباعة: {stats["points_sold"]}',
+            text=stats_text,
             font_size='13sp',
             color=(0.97, 0.79, 0.28, 1),
             size_hint_y=None,
@@ -744,10 +732,9 @@ class VodafoneApp(App):
             for req in pending:
                 card = BoxLayout(orientation='vertical', spacing=10, padding=20, size_hint_y=None, height=200)
 
+                info_text = f'👤 [b]{req["user_phone"]}[/b]\n⭐ {req["points"]} نقطة - 💰 {req["price"]} جنيه\n⏳ في الانتظار'
                 info = Label(
-                    text=f'👤 [b]{req["user_phone"]}[/b]
-⭐ {req["points"]} نقطة - 💰 {req["price"]} جنيه
-⏳ في الانتظار',
+                    text=info_text,
                     markup=True,
                     font_size='14sp',
                     color=(1, 1, 1, 1),
@@ -862,8 +849,7 @@ class VodafoneApp(App):
                     timeout=10
                 )
 
-            self.show_popup('تم!', f'✅ تم تأكيد شحن {request["points"]} نقطة
-لـ {request["user_phone"]}')
+            self.show_popup('تم!', f'✅ تم تأكيد شحن {request["points"]} نقطة\nلـ {request["user_phone"]}')
             self.show_admin_panel()
 
         except Exception as e:
@@ -884,8 +870,7 @@ class VodafoneApp(App):
                 timeout=10
             )
 
-            self.show_popup('تم', f'❌ تم رفض الطلب
-لـ {request["user_phone"]}')
+            self.show_popup('تم', f'❌ تم رفض الطلب\nلـ {request["user_phone"]}')
             self.show_admin_panel()
 
         except Exception as e:
@@ -954,24 +939,7 @@ class VodafoneApp(App):
                 timeout=10
             )
 
-            msg = (
-                f"🔔 طلب شحن نقاط جديد!
-"
-                f"👤 العميل: {self.user_phone}
-"
-                f"⭐ النقاط: {package['points']}
-"
-                f"💰 المبلغ: {package['price']} جنيه
-"
-                f"⏳ في انتظار التأكيد"
-            )
-
-            import webbrowser
-            webbrowser.open(f'https://wa.me/2{ADMIN_PHONE}?text={msg}')
-
-            self.show_popup('تم إرسال الطلب', '✅ تم إرسال طلبك
-في انتظار تأكيد الأدمن
-سيتم إشعارك عند التأكيد')
+            self.show_popup('تم إرسال الطلب', '✅ تم إرسال طلبك\nفي انتظار تأكيد الأدمن\nسيتم إشعارك عند التأكيد')
 
         except Exception as e:
             self.show_popup('خطأ', str(e))
