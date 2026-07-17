@@ -16,7 +16,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libsqlite3-dev lld libffi-dev libssl-dev zlib1g-dev libunwind-dev
+          sudo apt-get install -y libsqlite3-dev lld libffi-dev libssl-dev zlib1g-dev libunwind-dev build-essential autoconf libtool pkg-config
           pip install --upgrade pip
           pip install buildozer cython virtualenv
 
@@ -27,7 +27,8 @@ jobs:
           java-version: '17'
 
       - name: Build with Buildozer
-        run: yes | buildozer android debug
+        run: |
+          buildozer android debug
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
